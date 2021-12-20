@@ -19,10 +19,11 @@ def cpanel(target, parameters=None):
     headers = {'Authorization' : f'cpanel {CPANEL_USERNAME}:{CPANEL_TOKEN}'}
     logger.info('GET %s', target)
     res = requests.get(url, params=parameters, headers=headers)
+    if res.status_code != requests.codes.ok:
+        logger.info('%s', res.text)
+        raise RuntimeError(f'Request to {url} returned status code {res.status_code}')
     logger.info('%s', json.dumps(res.json(), indent=2))
     print(json.dumps(res.json(), indent=2))
-    if res.status_code != requests.codes.ok:
-        raise RuntimeError(f'Request to {url} returned status code {res.status_code}')
 
 def cpanel_delete_file(filepath):
     '''Deletes the file at filepath from the CPanel server.
@@ -43,7 +44,8 @@ def cpanel_delete_file(filepath):
     }
     logger.info('GET Fileman/fileop')
     res = requests.get(url, params=parameters, headers=headers)
+    if res.status_code != requests.codes.ok:
+        logger.info('%s', res.text)
+        raise RuntimeError(f'Request to {url} returned status code {res.status_code}')
     logger.info('%s', json.dumps(res.json(), indent=2))
     print(json.dumps(res.json(), indent=2))
-    if res.status_code != requests.codes.ok:
-        raise RuntimeError(f'Request to {url} returned status code {res.status_code}')
