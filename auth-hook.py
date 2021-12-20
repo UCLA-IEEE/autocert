@@ -1,11 +1,7 @@
 import os
 
 from cpanel import cpanel
-try:
-    from keys import *
-except ImportError:
-    # Use environment variables instead
-    pass
+from constants import *
 
 def auth_hook():
     '''Places the verification file in the CPanel webroot.

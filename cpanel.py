@@ -2,11 +2,7 @@ import json
 import logging
 import requests
 
-try:
-    from keys import *
-except ImportError:
-    # Use environment variables instead
-    pass
+from constants import *
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
