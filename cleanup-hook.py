@@ -12,7 +12,7 @@ def cleanup_hook():
 
     NOTE: Uses deprecated API via cpanel_delete_file(). Will eventually fail.
     '''
-    filepath = WEBROOTS[os.environ['CERTBOT_DOMAIN']] + '/.well-known/acme-challenge' + os.environ['CERTBOT_TOKEN']
+    filepath = WEBROOTS[os.environ['CERTBOT_DOMAIN']] + '/.well-known/acme-challenge/' + os.environ['CERTBOT_TOKEN']
     try:
         cpanel_delete_file(filepath)
     except RuntimeError:
