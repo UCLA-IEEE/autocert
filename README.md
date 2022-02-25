@@ -16,7 +16,7 @@ CPANEL_SERVER = '<server name and port>'
 CPANEL_USERNAME = '<username>'
 CPANEL_TOKEN = '<api token>'
 
-CERT_EMAIL = 'webmaster@ieeebruins.com' # T be associated with cert
+CERT_EMAIL = 'webmaster@ieeebruins.com' # To be associated with cert
 WEBROOTS = {
     '<domain name>': f'/home/{CPANEL_USERNAME}/path/to/webroot',
     # Add a new entry for each domain that needs a cert
