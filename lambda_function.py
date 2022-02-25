@@ -59,3 +59,6 @@ def lambda_handler(event, context):
     for domain in WEBROOTS:
         get_cert(domain)
         install_cert(domain)
+
+if __name__ == '__main__':
+    lambda_handler(None, None)
