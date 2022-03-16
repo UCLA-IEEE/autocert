@@ -1,4 +1,4 @@
-import certbot
+from certbot.main import main
 import logging
 import shutil
 
@@ -30,10 +30,12 @@ def get_cert(domain):
         '--manual-auth-hook', 'python3 auth-hook.py',
         '--manual-cleanup-hook', 'python3 cleanup-hook.py',
     ]
-    code = int(certbot.main.main(args))
-    logger.info('Certbot exit code: %d', code)
-    if code != 0:
-        raise RuntimeError(f'Certbot failed to generate a cert for {domain}')
+    rc = main(args)
+    if rc is not None:
+        code = int(rc)
+        logger.info('Certbot exit code: %d', code)
+        if code != 0:
+            raise RuntimeError(f'Certbot failed to generate a cert for {domain}')
 
 def install_cert(domain):
     '''Fetch the server certificate and private key from
