@@ -23,6 +23,11 @@ WEBROOTS = {
 }
 ```
 
+You will also need the `certbot` package, which you can install with:
+```bash
+pip install certbot
+```
+
 Then run
 ```bash
 python lambda_function.py
