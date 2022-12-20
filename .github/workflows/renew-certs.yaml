@@ -1,0 +1,31 @@
+name: Renew Certs
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 10 1 * *"
+
+jobs:
+  renew-certs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Autocert
+        env:
+          CPANEL_SERVER: ${{ secrets.CPANEL_SERVER }}
+          CPANEL_USERNAME: ${{ secrets.CPANEL_USERNAME }}
+          CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
+          CERT_EMAIL: ${{ secrets.CERT_EMAIL }}
+          WEBROOTS: ${{ secrets.WEBROOTS }}
+        run: |
+          python lambda_function.py > /dev/null # Suppress stdout for security

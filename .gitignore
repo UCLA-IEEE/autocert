@@ -130,3 +130,9 @@ dmypy.json
 
 # Private keys
 keys.py
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode
